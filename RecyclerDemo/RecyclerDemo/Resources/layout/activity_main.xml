@@ -29,10 +29,9 @@
 
   <Button
     android:id="@+id/add_player_button"
-    android:layout_marginBottom="24dp"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="#12338b"
+    android:background="#196f0c"
     android:textColor="#eeeeee"
     android:textSize="14dp"
     android:text="Add new player"

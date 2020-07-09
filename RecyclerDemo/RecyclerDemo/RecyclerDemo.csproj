@@ -60,12 +60,18 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditablePlayersAdapter.cs" />
+    <Compile Include="IEditableAdapter.cs" />
+    <Compile Include="IEditableViewHolder.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayersAdapter.cs" />
     <Compile Include="PlayerViewHolder.cs" />
+    <Compile Include="EditablePlayerViewHolder.cs" />
+    <Compile Include="RecyclerItemDecoration.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TouchListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\players.csv" />

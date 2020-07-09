@@ -6,11 +6,11 @@ using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace RecyclerDemo
 {
-    class PlayersAdapter : Adapter
+    class EditablePlayersAdapter : Adapter, IEditableAdapter
     {
         protected readonly ObservableCollection<Player> players;
 
-        public PlayersAdapter(IEnumerable<Player> players)
+        public EditablePlayersAdapter(IEnumerable<Player> players)
         {
             this.players = new ObservableCollection<Player>(players);
         }
@@ -22,12 +22,12 @@ namespace RecyclerDemo
             var itemView = LayoutInflater.From(parent.Context)
                 .Inflate(Resource.Layout.list_item_player, parent, false);
 
-            return new PlayerViewHolder(itemView);
+            return new EditablePlayerViewHolder(itemView);
         }
 
         public override void OnBindViewHolder(ViewHolder holder, int position)
         {
-            var playerHolder = holder as PlayerViewHolder;
+            var playerHolder = holder as EditablePlayerViewHolder;
 
             var player = players[position];
 
@@ -46,6 +46,22 @@ namespace RecyclerDemo
         {
             players.Add(player);
             NotifyItemInserted(ItemCount - 1);
+        }
+
+        public void MoveItem(int fromPosition, int toPosition)
+        {
+            players.Move(fromPosition, toPosition);
+            NotifyItemMoved(fromPosition, toPosition);
+        }
+
+        public void RemoveItem(int position)
+        {
+            players.RemoveAt(position);
+            NotifyItemRemoved(position);
+        }
+
+        public void EditItem(int position)
+        {
         }
     }
 }
