@@ -67,8 +67,15 @@ namespace RecyclerDemo
 
             var players = LoadData();
             var adapter = new EditablePlayersAdapter(players);
+
             recycler.SetLayoutManager(new LinearLayoutManager(this));
             recycler.SetAdapter(adapter);
+
+            var motionController = new RecyclerMotionController(adapter);
+            var itemTouchHelper = new ItemTouchHelper(motionController);
+            itemTouchHelper.AttachToRecyclerView(recycler);
+
+            //recycler.AddItemDecoration(new RecyclerItemDecoration(motionController.OnDraw));
         }
 
         #endregion

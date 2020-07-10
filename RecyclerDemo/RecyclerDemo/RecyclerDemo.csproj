@@ -69,6 +69,7 @@
     <Compile Include="PlayerViewHolder.cs" />
     <Compile Include="EditablePlayerViewHolder.cs" />
     <Compile Include="RecyclerItemDecoration.cs" />
+    <Compile Include="RecyclerMotionController.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TouchListener.cs" />

@@ -6,7 +6,7 @@ using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace RecyclerDemo
 {
-    class PlayersAdapter : Adapter
+    public class PlayersAdapter : Adapter
     {
         protected readonly ObservableCollection<Player> players;
 

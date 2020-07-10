@@ -6,7 +6,7 @@ using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace RecyclerDemo
 {
-    class EditablePlayersAdapter : Adapter, IEditableAdapter
+    public class EditablePlayersAdapter : Adapter, IEditableAdapter
     {
         protected readonly ObservableCollection<Player> players;
 

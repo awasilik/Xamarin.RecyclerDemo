@@ -1,6 +1,6 @@
 ﻿namespace RecyclerDemo
 {
-    interface IEditableAdapter
+    public interface IEditableAdapter
     {
         void MoveItem(int fromPosition, int toPosition);
 

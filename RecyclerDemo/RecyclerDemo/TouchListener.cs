@@ -3,7 +3,7 @@ using Android.Views;
 
 namespace RecyclerDemo
 {
-    class TouchListener : Java.Lang.Object, View.IOnTouchListener
+    public class TouchListener : Java.Lang.Object, View.IOnTouchListener
     {
         private readonly Func<MotionEvent, bool> motionAction;
 
@@ -14,7 +14,7 @@ namespace RecyclerDemo
 
         public bool OnTouch(View v, MotionEvent e)
         {
-            return motionAction.Invoke(e);
+            return motionAction?.Invoke(e) ?? false;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace RecyclerDemo
 {
-    interface IEditableViewHolder
+    public interface IEditableViewHolder
     {
         void OnDragged();
 
