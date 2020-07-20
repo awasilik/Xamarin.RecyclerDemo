@@ -4,6 +4,8 @@
     {
         void OnDragged();
 
+        void OnSwiped();
+
         void OnCleared();
     }
 }

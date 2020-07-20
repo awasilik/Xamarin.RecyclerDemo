@@ -1,13 +1,13 @@
-﻿using Android.Graphics;
+﻿using System;
 using Android.Views;
 using Android.Widget;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
 
-namespace RecyclerDemo
+namespace RecyclerDemo.Clickable
 {
-    public class EditablePlayerViewHolder : ViewHolder, IEditableViewHolder
+    public class ClickablePlayerViewHolder : ViewHolder
     {
-        private readonly View background;
+        private EventHandler clickDelegate;
 
         public ImageView Image { get; }
 
@@ -19,7 +19,7 @@ namespace RecyclerDemo
 
         public TextView Club { get; }
 
-        public EditablePlayerViewHolder(View itemView)
+        public ClickablePlayerViewHolder(View itemView)
             : base(itemView)
         {
             Image = itemView.FindViewById<ImageView>(Resource.Id.player_image);
@@ -27,19 +27,15 @@ namespace RecyclerDemo
             Age = itemView.FindViewById<TextView>(Resource.Id.player_age);
             Nationality = itemView.FindViewById<TextView>(Resource.Id.player_nationality);
             Club = itemView.FindViewById<TextView>(Resource.Id.player_club);
-
-            background = itemView.FindViewById(Resource.Id.item_background);
-            OnCleared();
         }
 
-        public void OnDragged()
+        public void OnClick(Action action)
         {
-            background.SetBackgroundColor(Color.LightGray);
-        }
+            ItemView.Click -= clickDelegate;
 
-        public void OnCleared()
-        {
-            background.SetBackgroundColor(Color.White);
+            clickDelegate = (s, e) => action?.Invoke();
+
+            ItemView.Click += clickDelegate;
         }
     }
 }

@@ -4,13 +4,13 @@ using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
 
-namespace RecyclerDemo
+namespace RecyclerDemo.Final
 {
-    public class RecyclerMotionController : ItemTouchHelper.Callback
+    public class MotionController : ItemTouchHelper.Callback
     {
         private readonly IEditableAdapter adapter;
 
-        public RecyclerMotionController(IEditableAdapter adapter)
+        public MotionController(IEditableAdapter adapter)
         {
             this.adapter = adapter;
         }
@@ -123,9 +123,6 @@ namespace RecyclerDemo
             currentViewHolder = viewHolder;
         }
 
-        /// <summary>
-        /// Sets item move cancelled listener
-        /// </summary>
         private void SetTouchCancelListener(Canvas canvas, RecyclerView recycler, ViewHolder viewHolder, float dX, float dY, int actionState, bool isCurrentlyActive)
         {
             recycler.SetOnTouchListener(new TouchListener(OnTouch));
@@ -150,9 +147,6 @@ namespace RecyclerDemo
             }
         }
 
-        /// <summary>
-        /// Set on item touch listener - when item is "moved"
-        /// </summary>
         private void SetTouchDownListener(Canvas canvas, RecyclerView recycler, ViewHolder viewHolder, float dX, float dY, int actionState,
             bool isCurrentlyActive)
         {
@@ -169,9 +163,6 @@ namespace RecyclerDemo
             }
         }
 
-        /// <summary>
-        /// Clear the item state when user lifts the finger
-        /// </summary>
         private void SetTouchUpListener(Canvas canvas, RecyclerView recycler, ViewHolder viewHolder, float dX, float dY, int actionState,
             bool isCurrentlyActive)
         {
@@ -230,12 +221,12 @@ namespace RecyclerDemo
             var leftButton = new RectF(view.Left, view.Top + 20, view.Left + buttonWidth, view.Bottom - 20);
             paint.Color = Color.LightSeaGreen;
             canvas.DrawRoundRect(leftButton, corners, corners, paint);
-            DrawText("edytuj", canvas, leftButton, paint);
+            DrawText("edit", canvas, leftButton, paint);
 
             var rightButton = new RectF(view.Right - buttonWidth, view.Top + 20, view.Right, view.Bottom - 20);
             paint.Color = Color.IndianRed;
             canvas.DrawRoundRect(rightButton, corners, corners, paint);
-            DrawText("usuń", canvas, rightButton, paint);
+            DrawText("delete", canvas, rightButton, paint);
 
             buttonInstance = null;
             if (buttonsState == ButtonsState.LeftVisible) buttonInstance = leftButton;
@@ -253,11 +244,8 @@ namespace RecyclerDemo
             }
         }
 
-
         private void AttachActions(ViewHolder viewHolder, MotionEvent motionEvent)
         {
-            return;
-
             if (buttonInstance != null && buttonInstance.Contains(motionEvent.GetX(), motionEvent.GetY()))
             {
                 if (buttonsState == ButtonsState.LeftVisible) adapter.EditItem(viewHolder.AdapterPosition);
