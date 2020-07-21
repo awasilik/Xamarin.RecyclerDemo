@@ -20,7 +20,7 @@ using RecyclerDemo.Final;
 
 namespace RecyclerDemo
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class MainActivity : Activity
     {
         private ObservableCollection<Player> players;
@@ -32,10 +32,10 @@ namespace RecyclerDemo
             Init(savedInstanceState);
             players = new ObservableCollection<Player>(LoadData());
 
-            //PrepareBasicRecycler();
+            PrepareBasicRecycler();
             //PrepareClickableRecycler();
             //PrepareEditableRecycler();
-            PrepareRecyclerView();
+            //PrepareRecyclerView();
         }
 
         #region Init
@@ -110,6 +110,8 @@ namespace RecyclerDemo
             var recycler = FindViewById<RecyclerView>(Resource.Id.players_recycler);
 
             var adapter = new PlayersAdapter(players);
+            adapter.OnItemClicked += (s, e) => { Toast.MakeText(this, "Clicked " + e.Name, ToastLength.Short).Show(); };
+            adapter.OnItemEdited += (s, e) => { Toast.MakeText(this, "Edited " + e.Name, ToastLength.Short).Show(); };
 
             recycler.SetLayoutManager(new LinearLayoutManager(this));
             recycler.SetAdapter(adapter);

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Android.Views;
 using FFImageLoading;
 using RecyclerDemo.Editable;
@@ -9,6 +10,9 @@ namespace RecyclerDemo.Final
     public class PlayersAdapter : Adapter, IEditableAdapter
     {
         private readonly ObservableCollection<Player> players;
+
+        public event EventHandler<Player> OnItemClicked;
+        public event EventHandler<Player> OnItemEdited;
 
         public PlayersAdapter(ObservableCollection<Player> players)
         {
@@ -40,6 +44,8 @@ namespace RecyclerDemo.Final
                 .LoadUrl(player.Photo)
                 .DownSampleInDip(80)
                 .Into(playerHolder.Image);
+
+            playerHolder.OnClick(() => OnItemClicked?.Invoke(this, player));
         }
 
         public void AddPlayer(Player player)
@@ -62,6 +68,7 @@ namespace RecyclerDemo.Final
 
         public void EditItem(int position)
         {
+            OnItemEdited?.Invoke(this, players[position]);
         }
     }
 }

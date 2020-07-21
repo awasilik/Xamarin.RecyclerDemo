@@ -69,6 +69,9 @@
     <Compile Include="Editable\SimpleMotionController.cs" />
     <Compile Include="IEditableAdapter.cs" />
     <Compile Include="IEditableViewHolder.cs" />
+    <Compile Include="LayoutManagerActivity.cs" />
+    <Compile Include="LayoutManager\LayoutManagerAdapter.cs" />
+    <Compile Include="LayoutManager\LayoutManagerViewHolder.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Basic\BasicPlayersAdapter.cs" />
@@ -113,9 +116,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="CsvHelper">
       <Version>15.0.5</Version>
@@ -132,6 +133,20 @@
     <AndroidResource Include="Resources\layout\list_item_player.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\list_item_image.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\lm_activity.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_next.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

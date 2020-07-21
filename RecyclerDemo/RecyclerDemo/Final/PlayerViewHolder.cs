@@ -1,4 +1,5 @@
-﻿using Android.Graphics;
+﻿using System;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
@@ -7,6 +8,8 @@ namespace RecyclerDemo.Editable
 {
     public class PlayerViewHolder : ViewHolder, IEditableViewHolder
     {
+        private EventHandler clickDelegate;
+
         private readonly View background;
 
         public ImageView Image { get; }
@@ -30,6 +33,15 @@ namespace RecyclerDemo.Editable
 
             background = itemView.FindViewById(Resource.Id.item_background);
             OnCleared();
+        }
+
+        public void OnClick(Action action)
+        {
+            ItemView.Click -= clickDelegate;
+
+            clickDelegate = (s, e) => action?.Invoke();
+
+            ItemView.Click += clickDelegate;
         }
 
         public void OnDragged()
